@@ -39,7 +39,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         
         let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(ViewController.keyboardWillBeShown(_:)), name: UIKeyboardWillShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(ViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
@@ -60,7 +60,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillBeShown(notification: NSNotification) {
         originalContentOffset = scrollView.contentOffset
 
         if let activeField = self.activeField, keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
